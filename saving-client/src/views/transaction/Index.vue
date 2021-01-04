@@ -28,8 +28,8 @@
                                     <td>{{ transaction.type }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <router-link :to="{ name: 'transaction.edit', params: { id: transaction.index} }" class="btn btn-sm btn-outline-info">edit</router-link>
-                                            <button class="btn btn-sm btn-outline-danger">delete</button>
+                                            <router-link :to="{ name: 'transaction.edit', params: { id: transaction.id} }" class="btn btn-sm btn-outline-info">edit</router-link>
+                                            <button class="btn btn-sm btn-outline-danger" @click.prevent="destroy(transaction.id, index)">delete</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -61,8 +61,21 @@ export default {
             });
         });
 
+        function destroy(id, index) {
+             axios.delete(
+                `http://localhost:8000/api/transaction/${id}`
+            )
+            .then(() => {
+                transactions.value.data.splice(index, 1);
+            })
+            .catch((err) => {
+                console.log(err.response.data)
+            });
+        }
+
         return {
-            transactions
+            transactions,
+            destroy
         }
     }
 }
