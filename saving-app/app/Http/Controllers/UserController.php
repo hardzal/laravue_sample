@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use PDOException;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -53,7 +54,7 @@ class UserController extends Controller
             return response()->json($response, Response::HTTP_CREATED);
         } catch(QueryException $e) {
             return response()->json([
-                'message' => 'Failed created user. Error: '. $e->errorInfo()
+                'message' => 'Failed created user. Error: '. $e->errorInfo[2]
             ]);
         }
     }
@@ -108,7 +109,7 @@ class UserController extends Controller
             return response()->json($response, Response::HTTP_OK);
         } catch(QueryException $e) {
             return response()->json([
-                'message' => 'Failed updated user '. $e->errorInfo()
+                'message' => 'Failed updated user '. $e->errorInfo[2]
             ]);
         }
     }
@@ -132,7 +133,7 @@ class UserController extends Controller
             return response()->json($response, Response::HTTP_OK);
         } catch(QueryException $e) {
             return response()->json([
-                'message' => 'Failed '. $e->errorInfo()
+                'message' => 'Failed '. $e->errorInfo[2]
             ]);
         }
     }

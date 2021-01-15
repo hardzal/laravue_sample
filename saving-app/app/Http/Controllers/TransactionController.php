@@ -54,7 +54,7 @@ class TransactionController extends Controller
             return response()->json($response, Response::HTTP_CREATED);
         } catch(QueryException $e) {
             return response()->json([
-                'message' => "Failed ". $e->errorInfo(),
+                'message' => "Failed ". $e->errorInfo[2],
             ]);
         }
     }
@@ -107,7 +107,7 @@ class TransactionController extends Controller
             return response()->json($response, Response::HTTP_OK);
         } catch(QueryException $e) {
             return response()->json([
-                'message' => "Failed ". $e->errorInfo(),
+                'message' => "Failed ". $e->errorInfo[2],
             ]);
         }
     }
@@ -131,7 +131,7 @@ class TransactionController extends Controller
             return response()->json($response, Response::HTTP_OK);
         } catch(QueryException $e) {
             return response()->json([
-                'message' => "Failed ". $e->errorInfo(),
+                'message' => "Failed ". $e->errorInfo[2],
             ]);
         }
     }
