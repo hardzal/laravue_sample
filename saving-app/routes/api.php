@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\TransactionController;
-use App\Models\Transaction;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,5 +26,5 @@ Route::post('/transaction', [TransactionController::class, 'store']);
 Route::put('/transaction/{id}', [TransactionController::class, 'update']);
 Route::delete('/transaction/{id}', [TransactionController::class, 'destroy']);
 
-
-// Route::resource('/transaction', [TransactionController::class])
+// Route::get('/users', [UserController::class, 'index']);
+Route::resource('users', UserController::class);
